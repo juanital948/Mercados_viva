@@ -1,0 +1,27 @@
+# Entornos virtuales de Python
+venv/
+env/
+ENV/
+.venv/
+
+# Caché y archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Base de datos SQLite local (para que no subas tu BD de pruebas local)
+mercado_viva.db
+*.db
+*.sqlite3
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Configuraciones de editores de código (como VS Code)
+.vscode/
+.idea/
+
+# Entorno de pruebas
+.pytest_cache/
