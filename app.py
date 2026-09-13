@@ -4,11 +4,11 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from backend.database import db, init_db, Sede, Producto, Pedido
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+# Como app.py ya está en la raíz, el directorio base es el actual:
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 FRONTEND_DIR = os.path.join(BASE_DIR, 'frontend')
 
 app = Flask(__name__, template_folder=FRONTEND_DIR, static_folder=FRONTEND_DIR, static_url_path='')
-
 # Habilita peticiones CORS desde Live Server o cualquier cliente frontend
 CORS(app)
 
