@@ -12,7 +12,12 @@ app = Flask(__name__, template_folder=FRONTEND_DIR, static_folder=FRONTEND_DIR, 
 # Habilita peticiones CORS desde Live Server o cualquier cliente frontend
 CORS(app)
 
-DATABASE_URL = os.environ.get('DATABASE_URL', f"sqlite:///{os.path.join(BASE_DIR, 'mercado_viva.db')}")
+# Configuración de base de datos compatible con Vercel (/tmp) y local
+if os.environ.get('VERCEL'):
+    DATABASE_URL = "sqlite:////tmp/mercado_viva.db"
+else:
+    DATABASE_URL = os.environ.get('DATABASE_URL', f"sqlite:///{os.path.join(BASE_DIR, 'mercado_viva.db')}")
+
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
@@ -157,4 +162,3 @@ def actualizar_estado_pedido(orden_id):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
-
