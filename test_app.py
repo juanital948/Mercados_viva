@@ -46,4 +46,4 @@ def test_compra_caso_excepcional_stock_insuficiente(client):
     assert res.status_code == 400
     data = res.get_json()
     assert data['exito'] is False
-    assert "Stock insuficiente" in data['mensaje']
+    assert "Stock insuficiente" in data['mensaje']# update test_app.py
