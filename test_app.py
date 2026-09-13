@@ -8,6 +8,7 @@ def client():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
     with app.test_client() as client:
         with app.app_context():
+            db.drop_all()
             db.create_all()
             
             sede_norte = Sede(id="sede_norte", nombre="Sede Norte")
@@ -24,6 +25,10 @@ def client():
             db.session.commit()
             
         yield client
+        
+        with app.app_context():
+            db.session.remove()
+            db.drop_all()
 
 def test_obtener_sedes_y_catalogo(client):
     res_sedes = client.get('/api/sedes')
