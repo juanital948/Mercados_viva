@@ -1,2 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercado VIVA — Plataforma de Compras y Operaciones</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-<!-- update index.html -->
+  <header class="navbar">
+    <div class="brand">🛒 Mercado <strong>VIVA</strong></div>
+    <div class="nav-controls">
+      <div class="role-selector">
+        <button id="btn-vista-cliente" class="btn-tab active" onclick="App.cambiarVista('cliente')">Vista Cliente</button>
+        <button id="btn-vista-operador" class="btn-tab" onclick="App.cambiarVista('operador')">Panel Operador / Tienda</button>
+      </div>
+      <div id="wrapper-sede" class="sede-box">
+        <label>Sede:</label>
+        <select id="select-sede" onchange="App.cambiarSede()"></select>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- VISTA CLIENTE -->
+    <div id="vista-cliente" class="view-panel">
+      <div class="grid-layout">
+        <section class="card">
+          <h2>Catálogo de Productos</h2>
+          <div id="grid-productos" class="product-grid">Cargando productos...</div>
+        </section>
+
+        <aside class="card sidebar">
+          <h2>Tu Carrito</h2>
+          <ul id="lista-carrito" class="cart-list">
+            <li class="empty">Carrito vacío.</li>
+          </ul>
+
+          <div class="form-group">
+            <label>Nombre Completo:</label>
+            <input type="text" id="cust-name" placeholder="Ej: Valentina Sierra">
+          </div>
+          <div class="form-group">
+            <label>Correo Electrónico:</label>
+            <input type="email" id="cust-email" placeholder="ejemplo@correo.com">
+          </div>
+          <div class="form-group">
+            <label>Dirección de Entrega:</label>
+            <input type="text" id="cust-address" placeholder="Calle 10 # 20 - 30">
+          </div>
+          <div class="form-group">
+            <label>Método de Pago:</label>
+            <select id="pay-method">
+              <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+              <option value="PSE / Transferencia">PSE / Transferencia</option>
+              <option value="Efectivo contraentrega">Efectivo contraentrega</option>
+            </select>
+          </div>
+
+          <div class="cart-total">
+            Total: $<span id="total-val">0</span>
+          </div>
+
+          <button class="btn-primary" onclick="App.procesarCompra()">Confirmar Compra</button>
+          
+          <div id="status-box" class="status-box info">Listo para comprar.</div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- VISTA OPERADOR -->
+    <div id="vista-operador" class="view-panel hidden">
+      <section class="card">
+        <h2>Panel de Operaciones: Tiendas y Domicilios</h2>
+        <p class="desc">Gestión de empaque y seguimiento de entregas en tiempo real.</p>
+        
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID Orden</th>
+              <th>Cliente</th>
+              <th>Dirección</th>
+              <th>Total</th>
+              <th>Estado Actual</th>
+              <th>Acción Operativa</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-pedidos">
+            <tr><td colspan="6">Cargando pedidos...</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html><!-- update index.html -->
