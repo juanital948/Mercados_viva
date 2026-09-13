@@ -8,8 +8,7 @@ def client():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
     with app.test_client() as client:
         with app.app_context():
-            from backend.database import init_db
-            init_db(app)
+            db.create_all()
             
             sede_norte = Sede(id="sede_norte", nombre="Sede Norte")
             db.session.add(sede_norte)
