@@ -1,13 +1,14 @@
 import pytest
-from backend.app import app, db
+from app import app, db
 from backend.database import Sede, Producto
 
 @pytest.fixture
 def client():
-    app.config['TESTING'] = True
+    app.config['TESTING'] = True 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
     with app.test_client() as client:
         with app.app_context():
+            # Limpiamos y creamos las tablas desde cero para cada prueba
             db.drop_all()
             db.create_all()
             
