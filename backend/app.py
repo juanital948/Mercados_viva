@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 import os
 import uuid
 from flask import Flask, render_template, request, jsonify
@@ -160,4 +157,4 @@ def actualizar_estado_pedido(orden_id):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
->>>>>>> 33537e3 (feat: MVP Mercado VIVA completado con arquitectura, backend, frontend, pruebas y README)
+
